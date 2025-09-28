@@ -35,8 +35,11 @@ def create_data_yaml(path):
     
     with open('data.yaml', 'w') as f:
         yaml.dump(dataset_config, f, default_flow_style=False)
-    
-    # Make the training directories (if they do not exist) 
+
+def create_training_directories():
+    '''
+    Creates the directory tree expected for model training.
+    '''
     directories = [
         'dataset',
         'dataset/images',
@@ -54,17 +57,17 @@ def create_data_yaml(path):
             os.mkdir(directory) 
         except FileExistsError:
             print(f'directory \'{directory}\' already exists')
-     
-    # Copy and split image / data pairs
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Performs YOLO model training setup")
 
-    parser.add_argument("--objnames-path", type=str, required=True, help='Path to the annotated data')
-    parser.add_argument("--images-path", type=str, required=False, help='Path to the training images')
-    parser.add_argument("--annotations-path", type=str, required=False, help="Path to the annotation files")
+    parser.add_argument('--objnames-path', type=str, required=True, help='Path to the annotated data')
+    parser.add_argument('--images-path', type=str, required=False, help='Path to the training images')
+    parser.add_argument('--annotations-path', type=str, required=False, help="Path to the annotation files")
 
     args = parser.parse_args()
 
     create_data_yaml(args.objnames_path)
+    create_training_directories()
+    
