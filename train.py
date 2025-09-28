@@ -60,11 +60,13 @@ if __name__ == "__main__":
     args.add_argument('--data-path', type=str, required=True, help='Path to the data.yaml file.')
     args.add_argument('--experiment-name', type=str, required=True, help='Name of the model to train')
     args.add_argument('--epochs', type=int, required=False, default=100, help='Number of epochs')
+    args.add_argument('--patience', type=int, required=False, default=10, help='Epocs to wait before not improvement')
     
     parsed = args.parse_args()
     
     train_class(
         data_yaml_path=parsed.data_path,
         experiment_name=parsed.experiment_name,
-        epochs=parsed.epochs
+        epochs=parsed.epochs,
+        patience=parsed.patience
     )
