@@ -2,6 +2,7 @@ import torch
 from ultralytics import YOLO
 from pathlib import Path
 import yaml
+import argparse
 
 """
 Train YOLO model with augmented data 
@@ -54,8 +55,16 @@ def train_class(data_yaml_path,
         raise
 
 if __name__ == "__main__":
+    args = argparse.ArgumentParser(description='Starts the training of a YOLO model.') 
+    
+    args.add_argument('--data-path', type=str, required=True, help='Path to the data.yaml file.')
+    args.add_argument('--experiment-name', type=str, required=True, help='Name of the model to train')
+    args.add_argument('--epochs', type=int, required=False, default=100, help='Number of epochs')
+    
+    parsed = args.parse_args()
+    
     train_class(
-        data_yaml_path='data.yaml',
-        experiment_name='aircraft_crash_detection',
-        epochs=100
+        data_yaml_path=parsed.data_path,
+        experiment_name=parsed.experiment_name,
+        epochs=parsed.epochs
     )
