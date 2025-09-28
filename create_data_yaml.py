@@ -155,16 +155,10 @@ def auto_split(image_label_pairs, p_train = 0.7, p_val = 0.2, p_test = 0.1):
         shutil.copy(val_pair.path_to_label, f'dataset/labels/val/{val_pair.name_of_label}')
     
     print('... Copying test pairs ...') 
-    debug = 0
     for test_pair in pairs_for_test:
         shutil.copy(test_pair.path_to_image, f'dataset/images/test/{test_pair.name_of_image}')
         shutil.copy(test_pair.path_to_label, f'dataset/labels/test/{test_pair.name_of_label}')
         
-        print("DEBUG", Path(f'dataset/labels/test/{test_pair.name_of_label}').exists())
-        debug+=1
-    print(debug)
-    
-    print(len(os.listdir('dataset/labels/test')))
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Performs YOLO model training setup")
