@@ -14,7 +14,8 @@ def train_class(data_yaml_path,
                 imgsz=640,
                 batch_size='auto',
                 patience=10,
-                device='auto'):
+                device='auto',
+                resume=False):
     
     if not Path(data_yaml_path).exists():
         raise FileNotFoundError(f"Data file not found: {data_yaml_path}")
@@ -43,7 +44,8 @@ def train_class(data_yaml_path,
             save=True,
             plots=True,
             patience=patience,
-            workers=4 if device == 'cuda' else 2
+            workers=4 if device == 'cuda' else 2,
+            resume=resume
         )
         
         weights_path = f'runs/detect/{experiment_name}/weights'
@@ -69,4 +71,5 @@ if __name__ == "__main__":
         experiment_name=parsed.experiment_name,
         epochs=parsed.epochs,
         patience=parsed.patience
+        resume=True
     )
