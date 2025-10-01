@@ -70,6 +70,6 @@ if __name__ == "__main__":
         data_yaml_path=parsed.data_path,
         experiment_name=parsed.experiment_name,
         epochs=parsed.epochs,
-        patience=parsed.patience
+        patience=parsed.patience,
         resume=True
     )
