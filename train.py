@@ -73,5 +73,5 @@ if __name__ == "__main__":
         epochs=parsed.epochs,
         patience=parsed.patience,
         resume=True,
-        model_path='/runs/detect/megaaircraft3/weights/last.pt'
+        model_path='runs/detect/megaaircraft3/weights/last.pt'
     )
