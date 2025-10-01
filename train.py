@@ -15,6 +15,7 @@ def train_class(data_yaml_path,
                 batch_size='auto',
                 patience=10,
                 device='auto',
+                model_path=None,
                 resume=False):
     
     if not Path(data_yaml_path).exists():
@@ -30,7 +31,7 @@ def train_class(data_yaml_path,
         dataset_config = yaml.safe_load(f)
     
     try:
-        model_name = f'yolov8{model_size}.pt'
+        model_name = model_path or f'yolov8{model_size}.pt'
         model = YOLO(model_name)
         
         results = model.train(
@@ -71,5 +72,6 @@ if __name__ == "__main__":
         experiment_name=parsed.experiment_name,
         epochs=parsed.epochs,
         patience=parsed.patience,
-        resume=True
+        resume=True,
+        model_path='/runs/detect/megaaircraft3/weights/last.pt'
     )
