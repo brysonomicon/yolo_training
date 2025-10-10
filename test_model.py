@@ -1,3 +1,5 @@
+import argparse
+
 from ultralytics import YOLO
 from pathlib import Path
 
@@ -34,4 +36,14 @@ def test_model(model_path, test_images_dir=None):
                 print("  No detections")
 
 if __name__ == "__main__":
-    test_model('runs/detect/aircraft_crash_detection/weights/best.pt')
+    args = argparse.ArgumentParser(description="Tests a yolo trained model.") 
+    
+    args.add_argument('--target-model', type=str, required=True, help='Path to the trained model to test.') 
+    args.add_argument('--target-images', type=str, required=False, help='Path to the images to test the model on.')
+    
+    parsed = args.parse_args()
+    
+    test_model(
+        model_path=parsed.target_model,
+        test_images_dir=parsed.target_images
+    )
