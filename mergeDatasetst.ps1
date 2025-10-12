@@ -13,7 +13,7 @@ function PopulateNamesTable {
   )
   $i = 0
   foreach ($line in $fileLines) {
-    namesTable[i++] = $line
+    $namesTable[$i++] = $line
   }
 }
 
@@ -24,7 +24,7 @@ function PopulateMergedNamesTable {
   )
   $i = 0
   foreach ($line in $fileLines) {
-    mergednamesTable[$line] = i++
+    mergednamesTable[$line] = $i++
   }
 }
 
