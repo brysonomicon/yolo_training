@@ -64,6 +64,7 @@ if __name__ == "__main__":
     args.add_argument('--experiment-name', type=str, required=True, help='Name of the model to train')
     args.add_argument('--epochs', type=int, required=False, default=100, help='Number of epochs')
     args.add_argument('--patience', type=int, required=False, default=10, help='Epocs to wait before not improvement')
+    args.add_argument('--model-path', type=str, required=False, default='./yolo11n.pt', help='Pretrained model or model to resume')
     
     parsed = args.parse_args()
     
@@ -73,5 +74,5 @@ if __name__ == "__main__":
         epochs=parsed.epochs,
         patience=parsed.patience,
         resume=True,
-        model_path='runs/detect/megaaircraft3/weights/last.pt'
+        model_path=parsed.model_path
     )
